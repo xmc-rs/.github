@@ -4,3 +4,6 @@ version = 1
 [merge.automerge_dependencies]
 # automerge by upgrade version for pull requests authored by dependabot or renovate.
 usernames = ["dependabot"]
+
+[update]
+always = true
