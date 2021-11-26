@@ -9,3 +9,4 @@ usernames = ["dependabot"]
 always = true
 
 merge.notify_on_conflict = false
+merge.method = "squash"
