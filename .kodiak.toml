@@ -7,3 +7,5 @@ usernames = ["dependabot"]
 
 [update]
 always = true
+
+merge.notify_on_conflict = false
