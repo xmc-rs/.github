@@ -1,5 +1,5 @@
 {
   "extends": [
-    "local<xmc-rs/renovate-config"
+    "local>xmc-rs/renovate-config"
   ]
 }
