@@ -5,12 +5,7 @@ on:
           description: Version to release
           required: true
           type: string
-  workflow_dispatch:
-    inputs:
-      version:
-          description: Version to release
-          required: true
-          type: string
+
 
 permissions:
   # TODO: once `releases: write` is supported, use it instead.
