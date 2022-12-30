@@ -2,9 +2,6 @@
 
 on:
   workflow_call:
-  workflow_dispatch:
-  schedule:
-    - cron:  '7 5 1 * *'
 
 name: Update
 
