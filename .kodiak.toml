@@ -6,6 +6,7 @@ usernames = ["dependabot", "renovate"]
 
 [update]
 always = true
+require_automerge_label = false
 
 merge.notify_on_conflict = false
 merge.method = "squash"
