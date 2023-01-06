@@ -12,18 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
-      - uses: xmc-rs/cargo@v1.0.0
+      - name: Install svd2rust
+        uses: xmc-rs/cargo@v1.0.0
         with:
           command: install
           args: svd2rust
-      - uses: xmc-rs/cargo@v1.0.0
+      - name: Install Form
+        uses: xmc-rs/cargo@v1.0.0
         with:
           command: install
           args: form
       - uses: oleksiyrudenko/gha-git-credentials@v2.1.1
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
-      - run: |
+      - name: Generate Code from SVD
+        run: |
           rm -r src/
           svd2rust -i ${{ inputs.svd_file }}
           mkdir src
