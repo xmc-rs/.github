@@ -2,6 +2,11 @@ name: Update
 
 on:
   workflow_call:
+    inputs:
+      svd_file:
+        required: true
+        type: string
+
 
 jobs:
   update:
@@ -21,7 +26,7 @@ jobs:
           token: '${{ secrets.GITHUB_TOKEN }}'
       - run: |
           rm -r src/
-          svd2rust -i XMC4700.svd
+          svd2rust -i ${{ inputs.svd_file }}
           mkdir src
           form -i lib.rs -o src/
           cargo fmt
