@@ -1,43 +1,37 @@
-
+name: Update
 
 on:
   workflow_call:
-    inputs:
-      svd_file:
-        required: true
-        type: string
-
-name: Update
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions-rs/cargo@v1
+      - uses: actions/checkout@v3.3.0
+      - uses: xmc-rs/cargo@v1.0.0
         with:
           command: install
           args: svd2rust
-      - uses: actions-rs/cargo@v1
+      - uses: xmc-rs/cargo@v1.0.0
         with:
           command: install
           args: form
-      - uses: oleksiyrudenko/gha-git-credentials@v2
+      - uses: oleksiyrudenko/gha-git-credentials@v2.1.1
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
       - run: |
           rm -r src/
-          svd2rust -i ${{ inputs.svd_file }}
+          svd2rust -i XMC4700.svd
           mkdir src
           form -i lib.rs -o src/
           cargo fmt
           rm lib.rs
-      - uses: tibdex/github-app-token@v1
+      - uses: tibdex/github-app-token@v1.7.0
         id: generate-token
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_SECRET_KEY }}
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v4.2.3
         with:
           branch: svd-update
           commit-message: "feat: updating from newer svd2rust"
